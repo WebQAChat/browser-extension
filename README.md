@@ -1,5 +1,6 @@
 ## A chrome browser extension that can answer your questions about a webpage
 
+### Tasks:
 - [ ] Familiarize yourself with the Llama Index API and its documentation
 - [ ] Create an openai account, if you don’t have one, and obtain an access API key
 - [ ] Design the user interface:
