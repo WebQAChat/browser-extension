@@ -18,7 +18,7 @@ Task 3. Frontend:
     
 Task 4. Backend:
   - [ ] Implement the chatbot functionality:
-    * [ ] Write JavaScript code to handle user input and generate responses.
+    * [ ] Write JavaScript code (in background.js, content.js) to handle user input and generate responses.
     * [ ] Utilize the trained GPT model to generate dynamic responses based on user queries.
     * [ ] Integrate the Llama Index API calls to provide additional information or context.
 
