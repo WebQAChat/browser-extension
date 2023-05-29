@@ -14,6 +14,7 @@ For the following two tasks, I could either assign people or let you guys choose
 Task 3. Frontend:
   - [ ] Plan the layout and design of the chatbot interface within the browser extension.
     * [ ] Create HTML/CSS templates to structure and style the interface.
+    * [ ] Write JavaScript code (in background.js, content.js, popup.js) to show the input screen when the user click on the chatbot icon
     
 Task 4. Backend:
   - [ ] Implement the chatbot functionality:
