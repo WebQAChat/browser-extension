@@ -26,4 +26,6 @@ Task 4. Backend:
 ### Making Pull Requests
 If you need a reference: https://www.digitalocean.com/community/tutorials/how-to-create-a-pull-request-on-github
 
-
+### Lists of Tutorials:
+- How to create a Chrome extension for GPT-3 questions with ReactJS: https://norahsakal.com/blog/create-gpt3-chrome-extension
+- I Created a Chrome Extension Without Coding Knowledge With GPT-4: https://medium.com/swlh/i-created-a-chrome-extension-without-coding-knowledge-with-gpt-4-e2fdc069e50a
