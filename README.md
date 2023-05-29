@@ -14,15 +14,27 @@ For the following two tasks, I could either assign people or let you guys choose
 Task 3. Frontend:
   - [ ] Plan the layout and design of the chatbot interface within the browser extension.
     * [ ] Create HTML/CSS templates to structure and style the interface.
+    * [ ] Write JavaScript code (in background.js, content.js, popup.js) to show the input screen when the user click on the chatbot icon
     
-Task 4. Backend:
+Task 4. Backend (Part 1):
   - [ ] Implement the chatbot functionality:
-    * [ ] Write JavaScript code to handle user input and generate responses.
+    * [ ] Write JavaScript code (in background.js, content.js) to handle user input and generate responses.
     * [ ] Utilize the trained GPT model to generate dynamic responses based on user queries.
+
+Task 5. Backend (Part 2):
+  - [ ] Set up a backend server to handle the indexing and search requests. This server will receive requests from your web extension and interact with the Llama Index library to perform the necessary operations.
+  - [ ] Need to consider between rest api (backend frameworks like Django, Flask, and FastAPI) or web sockets
+  - [ ] Might use web sockets for our case
     * [ ] Integrate the Llama Index API calls to provide additional information or context.
 
 
 ### Making Pull Requests
 If you need a reference: https://www.digitalocean.com/community/tutorials/how-to-create-a-pull-request-on-github
 
-
+### Lists of Tutorials:
+- How to create a Chrome extension for GPT-3 questions with ReactJS: https://norahsakal.com/blog/create-gpt3-chrome-extension
+- This is an open source project: https://github.com/interstellard/chatgpt-advanced/tree/main/src
+- Django vs Fast API: A Detailed Comparison: https://medium.com/@ShortHills_Tech/django-vs-fast-api-a-detailed-comparison-df8d00f3c3b2
+- What are web sockets?: https://developer.mozilla.org/en-US/docs/Web/API/WebSockets_API
+- WebSocket vs REST: Key differences and which to use: https://ably.com/topic/websocket-vs-rest
+- Building a WebSocket Server With Python: https://www.piesocket.com/blog/python-websocket
