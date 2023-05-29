@@ -28,3 +28,4 @@ If you need a reference: https://www.digitalocean.com/community/tutorials/how-to
 
 ### Lists of Tutorials:
 - How to create a Chrome extension for GPT-3 questions with ReactJS: https://norahsakal.com/blog/create-gpt3-chrome-extension
+- This is an open source project: https://github.com/interstellard/chatgpt-advanced/tree/main/src
