@@ -52,3 +52,126 @@
   flex: auto;
   text-align: right;
 }
+
+/* Color */
+:root{
+  --primary-color: #2196F3;
+  --user-chat-color: #868686;
+}
+
+/* Reset the original margin padding and set the border box of all element */
+*{
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+/* Styles for the chat widget */
+.chat-widget {
+  position: fixed;
+  bottom: 20px;
+  right: 20px;
+  width: 0;
+  height: 0;
+  background-color: #222;
+  border-radius: 10px;
+  box-shadow: 0 0 5px rgba(0, 0, 0, 0.3);
+  transition: 0.4s ease;
+  overflow: hidden;
+}
+
+/* Show other element when only chat-widget has active class */
+.chat-widget.active{
+  width: 450px;
+  height: 500px;
+}
+.chat-widget.active #close-button{
+  display: flex;
+}
+.chat-widget.active .chat-input-container{
+  display: flex;
+}
+
+/* Styles for the close button */
+.chat-widget .chat-header{
+  height: 8%;
+  border-bottom: 1px solid #373737;
+}
+#close-button {
+  position: absolute;
+  top: 5px;
+  right: 5px;
+  width: 25px;
+  height: 25px;
+  background-color: transparent;
+  border-radius: 50%;
+  border: none;
+  color: #dedede;
+  font-size: 14px;
+  display: none;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  transition: 0.3s ease;
+  transition-delay: 1s;
+}
+
+/* Styles for the chat window */
+#chat-window {
+  height: 81%;
+  padding: 10px;
+  overflow-y: auto;
+  color: #fff;
+}
+
+/* Styles for container of the message input field and button */
+.chat-input-container{
+  height: 11%;
+  max-width: 100%;
+  padding: 8px 10px 12px;
+  display: none;
+  justify-content: space-between;
+  border-top: 1px solid #373737;
+}
+
+/* Styles for the input field and send button */
+#message-input {
+  width: 74%;
+  padding: 5px;
+  padding-left: 10px;
+  border: none;
+  border-radius: 3px;
+  color: #fff;
+  background-color: #333;
+}
+#message-input:focus{
+  outline: none;
+}
+
+#send-button {
+  width: 25%;
+  padding: 5px;
+  border: none;
+  border-radius: 3px;
+  background-color: var(--primary-color);
+  color: #fff;
+  cursor: pointer;
+}
+
+/* Styles for the open/close button */
+#toggle-button {
+  position: fixed;
+  bottom: 20px;
+  right: 20px;
+  width: 50px;
+  height: 50px;
+  background-color: var(--primary-color);
+  border-radius: 50%;
+  border: none;
+  color: #fff;
+  font-size: 18px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+}

@@ -1,131 +1,39 @@
-<link href="popup.css" rel="stylesheet" type="text/css" />
-<script type="module" src="popup.js"></script>
-
 <!DOCTYPE html>
 <html>
 <head>
-  <style>
-    /* Styles for the chat widget */
-    #chat-widget {
-      position: fixed;
-      bottom: 20px;
-      right: 20px;
-      width: 300px;
-      height: 400px;
-      background-color: #222;
-      border-radius: 10px;
-      box-shadow: 0 0 5px rgba(0, 0, 0, 0.3);
-      display: none;
-    }
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Pop Up Chat</title>
 
-    /* Styles for the chat window */
-    #chat-window {
-      height: 80%;
-      padding: 10px;
-      overflow-y: scroll;
-      color: #fff;
-    }
+  <!-- Pop up css link -->
+  <link href="popup.css" rel="stylesheet" type="text/css" />
 
-    /* Styles for the input field and send button */
-    #message-input {
-      width: 65%;
-      padding: 5px;
-      border: none;
-      border-radius: 3px;
-      color: #fff;
-      background-color: #333;
-    }
-
-    #send-button {
-      width: 30%;
-      padding: 5px;
-      margin-left: 5px;
-      border: none;
-      border-radius: 3px;
-      background-color: #2196F3;
-      color: #fff;
-    }
-
-    /* Styles for the close button */
-    #close-button {
-      position: absolute;
-      top: 5px;
-      right: 5px;
-      width: 25px;
-      height: 25px;
-      background-color: #fff;
-      border-radius: 50%;
-      border: none;
-      color: #222;
-      font-size: 14px;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      cursor: pointer;
-    }
-
-    /* Styles for the open/close button */
-    #toggle-button {
-      position: fixed;
-      bottom: 20px;
-      right: 20px;
-      width: 50px;
-      height: 50px;
-      background-color: #2196F3;
-      border-radius: 50%;
-      border: none;
-      color: #fff;
-      font-size: 18px;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      cursor: pointer;
-    }
-  </style>
 </head>
 <body>
   <!-- Open/Close Button -->
-  <button id="toggle-button" onclick="toggleChatWidget()">+</button>
+  <button id="toggle-button" onclick="toggleChatWidget()"><i class="fa-solid fa-comment"></i></button>
 
   <!-- Chat widget HTML structure -->
-  <div id="chat-widget">
-    <button id="close-button" onclick="toggleChatWidget()">x</button>
-    <div id="chat-window"></div>
-    <div style="display: flex; justify-content: flex-end;">
-      <input type="text" id="message-input" placeholder="Type your message...">
-      <button id="send-button" onclick="sendMessage()">Send</button>
+  <div class="chat-widget" id="chat-widget">
+    <div class="chat-header">
+      <button id="close-button" onclick="toggleChatWidget()">X</button>
     </div>
+    <div id="chat-window"></div>
+    <form class="chat-input-container" id="chatSubmitForm">
+        <input type="text" id="message-input" placeholder="Type your message...">
+        <button type="submit" id="send-button" onclick="sendMessage()">Send</button>
+    </form>
   </div>
 
   <!-- Add your JavaScript code here to handle chat functionality -->
-  <script>
-    function toggleChatWidget() {
-      var chatWidget = document.getElementById("chat-widget");
-      var toggleButton = document.getElementById("toggle-button");
+  <!-- Link to pop up js file -->
+  <script src="popup.js"></script>
 
-      if (chatWidget.style.display === "none") {
-        chatWidget.style.display = "block";
-        toggleButton.textContent = "-";
-      } else {
-        chatWidget.style.display = "none";
-        toggleButton.textContent = "+";
-      }
-    }
+  <!-- Fontawesome icon link -->
+  <script src="https://kit.fontawesome.com/9d8e63c428.js" crossorigin="anonymous"></script>
 
-    function sendMessage() {
-    // Get the input value from the message input field
-    var messageInput = document.getElementById("message-input");
-    var message = messageInput.value.trim(); // Remove leading/trailing spaces
-
-    if (message !== "") {
-      // Do something with the message (e.g., send it to the server)
-      console.log("Sending message:", message);
-
-      // Clear the input field after sending the message
-      messageInput.value = "";
-    }
-  }
-
-  </script>
+  <!-- Pop up script link -->
+  <script type="module" src="popup.js"></script>
 </body>
 </html>
