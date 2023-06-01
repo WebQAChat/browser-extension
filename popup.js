@@ -31,6 +31,9 @@ function toggleChatWidget() {
      }
 }
 
+// Get the chat window to insert user message
+const chatWindow = document.getElementById('chat-window');
+
 // Sending messages
 function sendMessage() {
      // Get the input value from the message input field
@@ -40,6 +43,12 @@ function sendMessage() {
      if (message !== "") {
           // Do something with the message (e.g., send it to the server)
           console.log("Sending message:", message);
+          chatWindow.innerHTML += `
+               <div class="user-message-container message-container" id="user-message-container">
+                    <p class="message">${message}</p>
+                    <span class="time">9:00 pm</span>
+               </div>
+          `;
 
           // Clear the input field after sending the message
           messageInput.value = "";

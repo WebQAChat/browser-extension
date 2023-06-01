@@ -15,25 +15,33 @@
   <button id="toggle-button" onclick="toggleChatWidget()"><i class="fa-solid fa-comment"></i></button>
 
   <!-- Chat widget HTML structure -->
-  <div class="chat-widget" id="chat-widget">
+  <div class="chat-widget active" id="chat-widget">
     <div class="chat-header">
       <button id="close-button" onclick="toggleChatWidget()">X</button>
     </div>
-    <div id="chat-window"></div>
-    <form class="chat-input-container" id="chatSubmitForm">
+    <div id="chat-window">
+      <div class="user-message-container message-container" id="user-message-container">
+        <p class="message">Lorem ipsum dolor, sit amet consectetur adipisicing elit. Doloribus, quia.</p>
+        <span class="time">9:00 pm</span>
+      </div>
+      <div class="gpt-message-container message-container" id="gpt-message-container">
+        <p class="message">Lorem ipsum dolor, sit amet consectetur adipisicing elit. Doloribus, quia. Lorem ipsum dolor sit amet consectetur adipisicing elit. Vel, blanditiis!</p>
+        <span class="time">9:01 pm</span>
+        <span class="copy"><i class="fa-solid fa-copy"></i></span>
+      </div>
+    </div>
+    <form action="#" class="chat-input-container" id="chatSubmitForm">
         <input type="text" id="message-input" placeholder="Type your message...">
         <button type="submit" id="send-button" onclick="sendMessage()">Send</button>
     </form>
   </div>
 
   <!-- Add your JavaScript code here to handle chat functionality -->
-  <!-- Link to pop up js file -->
-  <script src="popup.js"></script>
 
   <!-- Fontawesome icon link -->
   <script src="https://kit.fontawesome.com/9d8e63c428.js" crossorigin="anonymous"></script>
 
   <!-- Pop up script link -->
-  <script type="module" src="popup.js"></script>
+  <script src="popup.js"></script>
 </body>
 </html>
