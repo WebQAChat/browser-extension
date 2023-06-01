@@ -1,3 +1,5 @@
+@import url('https://fonts.googleapis.com/css2?family=Hind:wght@300;500;700&display=swap');
+
 .container {
   width: 280px;
   color: #314d3e;
@@ -51,4 +53,195 @@
 .bookmark-controls {
   flex: auto;
   text-align: right;
+}
+
+/* Color */
+:root{
+  --primary-color: #2196F3;
+  --user-chat-color: #868686;
+}
+
+/* Reset the original margin padding and set the border box of all element */
+*{
+  font-family: 'Hind', sans-serif;
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+/* Styles for the chat widget */
+.chat-widget {
+  position: fixed;
+  bottom: 20px;
+  right: 20px;
+  width: 0;
+  height: 0;
+  background-color: #222;
+  border-radius: 10px;
+  box-shadow: 0 0 5px rgba(0, 0, 0, 0.3);
+  transition: 0.4s ease;
+  overflow: hidden;
+}
+
+/* Show other element when only chat-widget has active class */
+.chat-widget.active{
+  width: 450px;
+  height: 500px;
+}
+.chat-widget.active #close-button{
+  display: flex;
+}
+.chat-widget.active .chat-input-container{
+  display: flex;
+}
+
+/* Styles for the close button */
+.chat-widget .chat-header{
+  height: 8%;
+  border-bottom: 1px solid #373737;
+}
+#close-button {
+  position: absolute;
+  top: 5px;
+  right: 5px;
+  width: 25px;
+  height: 25px;
+  background-color: transparent;
+  border-radius: 50%;
+  border: none;
+  color: #dedede;
+  font-size: 14px;
+  display: none;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  transition: 0.3s ease;
+  transition-delay: 1s;
+}
+
+/* Styles for the chat window */
+#chat-window {
+  height: 81%;
+  padding: 10px;
+  overflow-y: auto;
+  color: #fff;
+}
+
+/* Styles for container of the message input field and button */
+.chat-input-container{
+  height: 11%;
+  max-width: 100%;
+  padding: 8px 10px 12px;
+  display: none;
+  justify-content: space-between;
+  border-top: 1px solid #373737;
+}
+
+/* Styles for the input field and send button */
+#message-input {
+  width: 74%;
+  padding: 5px;
+  padding-left: 10px;
+  border: none;
+  border-radius: 3px;
+  color: #fff;
+  background-color: #333;
+}
+#message-input:focus{
+  outline: none;
+}
+
+#send-button {
+  width: 25%;
+  padding: 5px;
+  border: none;
+  border-radius: 3px;
+  background-color: var(--primary-color);
+  color: #fff;
+  cursor: pointer;
+}
+
+/* Styles for the open/close button */
+#toggle-button {
+  position: fixed;
+  bottom: 20px;
+  right: 20px;
+  width: 50px;
+  height: 50px;
+  background-color: var(--primary-color);
+  border-radius: 50%;
+  border: none;
+  color: #fff;
+  font-size: 18px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+}
+
+/* Styles for messages */
+.message-container{
+  position: relative;
+  max-width: 75%;
+  margin-bottom: 2.5rem;
+}
+
+/* If user message span to right and if it is gpt message span to left */
+.user-message-container{
+  margin-left: auto;
+}
+.gpt-message-container{
+  margin-right: auto;
+}
+
+/* Style for messages */
+.message-container .message{
+  display: inline-block;
+  padding: .3rem .65rem;
+  border-radius: 10px;
+  max-width: 100%;
+  width: auto;
+  word-wrap: break-word;
+  font-size: .95rem;
+  font-weight: 300;
+  letter-spacing: 1px;
+}
+
+/* Add background-color depend on user message or gpt message */
+.user-message-container .message{
+  background-color: var(--primary-color);
+}
+.gpt-message-container .message{
+  background-color: var(--user-chat-color);
+}
+
+/* Style the span tag like time and copy */
+.message-container span{
+  position: absolute;
+  font-size: .95rem;
+  font-weight: 300;
+}
+.message-container span i{
+  font-size: .9rem;
+  font-weight: lighter;
+  color: #e0e0e0;
+}
+
+/* position copy btn */
+.message-container .copy{
+  bottom: 5px;
+  right: -22px;
+}
+
+/* position send time */
+.message-container .time{
+  bottom: -1.8rem;
+}
+
+/* position the time depend on user message or gpt message */
+.user-message-container .time{
+  right: 12px;
+}
+.gpt-message-container .time{
+  left: 12px;
 }
