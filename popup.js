@@ -34,8 +34,17 @@ function toggleChatWidget() {
 // Get the chat window to insert user message
 const chatWindow = document.getElementById('chat-window');
 
+// Have to add submit event to Form to prevent default form submittion
+const chatSubmitForm = document.getElementById('chatSubmitForm');
+chatSubmitForm.addEventListener('submit', sendMessage)
+
 // Sending messages
-function sendMessage() {
+function sendMessage(event) {
+     /* Prevent Form from submittiing default attribute action.
+     If don't protect, Form will submit to link according to action 
+     attribute inside Form tag. */
+     event.preventDefault();
+
      // Get the input value from the message input field
      var messageInput = document.getElementById("message-input");
      var message = messageInput.value.trim(); // Remove leading/trailing spaces
