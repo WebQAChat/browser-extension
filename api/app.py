@@ -8,9 +8,10 @@ app = Flask(__name__)
 @app.route("/api/question", methods=["POST"])
 def handle_question():
     question = request.json["question"]
+    context = request.json["context"]  # Get context from the request
 
     # Generate an answer using your GPT model
-    answer = generate_answer(question)
+    answer = generate_answer(question, context)
 
     # Send the answer back to the frontend
     return jsonify({"answer": answer})
