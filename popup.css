@@ -58,7 +58,7 @@
 /* Color */
 :root{
   --primary-color: #2196F3;
-  --user-chat-color: #868686;
+  --user-chat-color: #797979;
 }
 
 /* Reset the original margin padding and set the border box of all element */
@@ -94,6 +94,9 @@
 .chat-widget.active .chat-input-container{
   display: flex;
 }
+.chat-widget.active #chat-window{
+  display: block;
+}
 
 /* Styles for the close button */
 .chat-widget .chat-header{
@@ -121,6 +124,7 @@
 
 /* Styles for the chat window */
 #chat-window {
+  display: none;
   height: 81%;
   padding: 10px;
   overflow-y: auto;
@@ -181,13 +185,17 @@
 
 /* Styles for messages */
 .message-container{
+  display: flex;
   position: relative;
+  min-width: 80px;
+  width: fit-content;
   max-width: 75%;
   margin-bottom: 2.5rem;
 }
 
 /* If user message span to right and if it is gpt message span to left */
 .user-message-container{
+  justify-content: flex-end;
   margin-left: auto;
 }
 .gpt-message-container{
@@ -197,8 +205,8 @@
 /* Style for messages */
 .message-container .message{
   display: inline-block;
-  padding: .3rem .65rem;
-  border-radius: 10px;
+  padding: .5rem .75rem;
+  border-radius: 8px;
   max-width: 100%;
   width: auto;
   word-wrap: break-word;
@@ -224,24 +232,32 @@
 .message-container span i{
   font-size: .9rem;
   font-weight: lighter;
-  color: #e0e0e0;
 }
 
 /* position copy btn */
 .message-container .copy{
   bottom: 5px;
   right: -22px;
+  cursor: pointer;
+}
+.message-container .copy i{
+  color: #747474;
+}
+.message-container .copy:hover i{
+  color: #e0e0e0;
 }
 
-/* position send time */
+/* Styles for time */
 .message-container .time{
-  bottom: -1.8rem;
+  font-size: .85rem;
+  bottom: -1.5rem;
+  color: #a5a5a5;
 }
 
 /* position the time depend on user message or gpt message */
 .user-message-container .time{
-  right: 12px;
+  right: 8px;
 }
 .gpt-message-container .time{
-  left: 12px;
+  left: 8px;
 }
