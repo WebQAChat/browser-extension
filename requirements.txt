@@ -1,0 +1,8 @@
+flask
+llama_index
+torch
+transformers
+panda
+numpy
+langchain
+python-dotenv
