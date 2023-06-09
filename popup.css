@@ -67,7 +67,36 @@
   box-sizing: border-box;
   margin: 0;
   padding: 0;
+  scroll-behavior: smooth;
 }
+
+/* Message loader */
+.message-generating-loader {
+  margin: .25rem .9rem;
+  width: 7px;
+  height: 7px;
+  border-radius: 50%;
+  background-color: #fff;
+  box-shadow: 14px 0 #fff, -14px 0 #fff;
+  position: relative;
+  animation: flash 0.5s ease-out infinite alternate;
+}
+
+@keyframes flash {
+  0% {
+    background-color: #FFF2;
+    box-shadow: 14px 0 #FFF2, -14px 0 #FFF;
+  }
+  50% {
+    background-color: #FFF;
+    box-shadow: 14px 0 #FFF2, -14px 0 #FFF2;
+  }
+  100% {
+    background-color: #FFF2;
+    box-shadow: 14px 0 #FFF, -14px 0 #FFF2;
+  }
+}
+
 
 /* Styles for the chat widget */
 .chat-widget {
