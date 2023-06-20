@@ -1,0 +1,14 @@
+https://towardsdatascience.com/how-i-built-a-custom-gpt-based-chatbot-in-under-10-minutes-with-llamaindex-2102f0173420
+^^comprehensive guide on using 3 different input file types to make index and queries, and storing
+
+
+https://github.com/logan-markewich/llama_index_starter_pack/tree/main/flask_react
+^^base code found from example
+
+
+https://gpt-index.readthedocs.io/en/latest/guides/tutorials/fullstack_app_guide.html
+^^llama_index backend tutorial
+
+https://docs.python.org/3/library/multiprocessing.html
+https://superfastpython.com/multiprocessing-in-python/#Python_Processes
+^^python multiprocessing documentation, 2nd link better than 1st
