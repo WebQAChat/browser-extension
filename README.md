@@ -58,7 +58,7 @@ See inside api/ folder.
 
 If you need a reference: https://www.digitalocean.com/community/tutorials/how-to-create-a-pull-request-on-github
 
-### Lists of Tutorials:
+### Resources:
 
 -   How to create a Chrome extension for GPT-3 questions with ReactJS: https://norahsakal.com/blog/create-gpt3-chrome-extension
 -   This is an open source project: https://github.com/interstellard/chatgpt-advanced/tree/main/src
@@ -66,3 +66,4 @@ If you need a reference: https://www.digitalocean.com/community/tutorials/how-to
 -   What are web sockets?: https://developer.mozilla.org/en-US/docs/Web/API/WebSockets_API
 -   WebSocket vs REST: Key differences and which to use: https://ably.com/topic/websocket-vs-rest
 -   Building a WebSocket Server With Python: https://www.piesocket.com/blog/python-websocket
+-   A Guide to Building a Full-stack web app with llama index: https://gpt-index.readthedocs.io/en/latest/guides/tutorials/fullstack_app_guide.html

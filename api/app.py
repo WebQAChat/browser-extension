@@ -1,20 +1,32 @@
 from flask import Flask, jsonify, request
-from model import generate_answer  # Replace with your GPT model code
+from models import model  # Replace with your GPT model code
 
 app = Flask(__name__)
+chatModel = model.WebChatModel("gpt4")
+
+
+@app.route("/")
+def index():
+    return "home page", 200
 
 
 # Endpoint to handle question requests
-@app.route("/api/question", methods=["POST"])
-def handle_question():
-    question = request.json["question"]
-    context = request.json["context"]  # Get context from the request
+@app.route("/api/query", methods=["GET"])
+def query_index():
+    global index
+    query_text = request.args.get("question", None)
+
+    # retrieve the url of the website the user is currently on
+    # need to be updated
+    # urls = request.args.get("urls", None)
+
+    # chatModel.prepare_data(urls)
 
     # Generate an answer using your GPT model
-    answer = generate_answer(question, context)
+    response = chatModel.get_response(query_str=query_text)
 
-    # Send the answer back to the frontend
-    return jsonify({"answer": answer})
+    return str(response), 200
+
 
 # Start the server
 if __name__ == "__main__":

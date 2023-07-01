@@ -6,3 +6,4 @@ panda
 numpy
 langchain
 python-dotenv
+html2text
