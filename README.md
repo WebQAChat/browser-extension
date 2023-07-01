@@ -67,3 +67,4 @@ If you need a reference: https://www.digitalocean.com/community/tutorials/how-to
 -   WebSocket vs REST: Key differences and which to use: https://ably.com/topic/websocket-vs-rest
 -   Building a WebSocket Server With Python: https://www.piesocket.com/blog/python-websocket
 -   A Guide to Building a Full-stack web app with llama index: https://gpt-index.readthedocs.io/en/latest/guides/tutorials/fullstack_app_guide.html
+-   How to set up a virtual env in python: https://www.freecodecamp.org/news/how-to-setup-virtual-environments-in-python/
