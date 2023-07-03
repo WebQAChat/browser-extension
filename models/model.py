@@ -49,6 +49,7 @@ def initialize_index(index_name):
                 model="gpt-4",
                 max_tokens=512,
                 openai_api_key=os.getenv("OPENAI_API_KEY"),
+                streaming=True,
             )
         )
 

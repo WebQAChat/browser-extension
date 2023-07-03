@@ -9,36 +9,36 @@ const onDelete = e => {};
 
 const setBookmarkAttributes =  () => {};
 
-document.addEventListener("DOMContentLoaded", () => {
-    const questionInput = document.getElementById("questionInput");
-    const submitButton = document.getElementById("submitButton");
-    const answerContainer = document.getElementById("answerContainer");
+// document.addEventListener("DOMContentLoaded", () => {
+//     const questionInput = document.getElementById("questionInput");
+//     const submitButton = document.getElementById("submitButton");
+//     const answerContainer = document.getElementById("answerContainer");
 
-    // Send a question to the backend server and handle the response
-    function askQuestion() {
-        const question = questionInput.value;
-        const apiUrl = "http://your-backend-server.com/api/question"; // Replace with your backend server URL
+//     // Send a question to the backend server and handle the response
+//     function askQuestion() {
+//         const question = questionInput.value;
+//         const apiUrl = "http://your-backend-server.com/api/question"; // Replace with your backend server URL
 
-        fetch(apiUrl, {
-            method: "POST",
-            headers: {
-                "Content-Type": "application/json",
-            },
-            body: JSON.stringify({ question }),
-        })
-            .then((response) => response.json())
-            .then((data) => {
-                // Display the answer in the answerContainer
-                answerContainer.innerText = data.answer;
-            })
-            .catch((error) => {
-                console.error("Error:", error);
-            });
-    }
+//         fetch(apiUrl, {
+//             method: "POST",
+//             headers: {
+//                 "Content-Type": "application/json",
+//             },
+//             body: JSON.stringify({ question }),
+//         })
+//             .then((response) => response.json())
+//             .then((data) => {
+//                 // Display the answer in the answerContainer
+//                 answerContainer.innerText = data.answer;
+//             })
+//             .catch((error) => {
+//                 console.error("Error:", error);
+//             });
+//     }
 
-    // Add event listener to submitButton
-    submitButton.addEventListener("click", askQuestion);
-});
+//     // Add event listener to submitButton
+//     submitButton.addEventListener("click", askQuestion);
+// });
 
 
 // Function for toggle chat widget
@@ -115,8 +115,6 @@ function sendMessage(event) {
           // Set the btn disabled to prevent user from sending message while generating message
           sendBtn.setAttribute('disabled', true);
 
-          // Do something with the message (e.g., send it to the server)
-          console.log("Sending message:", message);
           chatWindow.innerHTML += `
                <div class="user-message-container message-container" id="user-message-container">
                     <div class="message">${message}</div>
@@ -127,44 +125,42 @@ function sendMessage(event) {
                </div>
           `;
 
-          setTimeout(function() {
-               // Generated message
-               var generatedMessage = 'Lorem ipsum dolor, sit amet consectetur adipisicing elit. Doloribus, quia. Lorem ipsum dolor sit amet consectetur adipisicing elit. Lorem ipsum dolor, sit amet consectetur adipisicing elit. Doloribus, quia. Lorem ipsum dolor sit amet consectetur adipisicing elit.';
-               
+          const loadingMessage = document.querySelector('.loading');
+          axios.get(`/api/query?question=${messageInput.value}`, {
+               message: messageInput.value
+          }).then((data) => {
                // Replace to loading message with generated message
-               const loadingMessage = document.querySelector('.loading');
                loadingMessage.classList.remove('loading');
                loadingMessage.innerHTML = `
                     <div class="message currentMessage"></div>
                     <span class="time">${currentTime}</span>
                `;
+               
+               console.log(data);
+               // Generated message
+               var generatedMessage = `${data.data}`;
 
-               var i = 0;
-               var speed = 10; /* The speed/duration of the effect in milliseconds */
-               var typingInterval;
-               
-               function startTypingAnimation() {
-                  typingInterval = setInterval(typeWriter, speed);
-               }
-               
-               // Type Writer function
-               function typeWriter() {
-                  if (i < generatedMessage.length) {
-                     document.querySelector(".currentMessage").innerHTML += generatedMessage.charAt(i);
-                     i++;
-                  } else {
-                     clearInterval(typingInterval);
-                     document.querySelector('.currentMessage').classList.remove('currentMessage');
-                     sendBtn.removeAttribute('disabled');
-                  }
-                  scrollToBottom(chatWindow);
-               }
-               
-               // Call the function to start the typing animation
-               startTypingAnimation();
+               const currentMessage = document.querySelector(".currentMessage");
+
+               var typeWriter = new typeWriterAnimation(generatedMessage, 1, currentMessage, sendBtn);
+               typeWriter.typeWriter();
 
                scrollToBottom(chatWindow);
-          }, 1000);
+          }).catch(error => {
+               // For error stages
+               console.error(error);
+               console.log('error api');
+               if(error.response.status === 500){
+                    console.log('Server error.');
+               }
+
+               // Remove loading stage and remove disabled button
+               loadingMessage.remove();
+               sendBtn.removeAttribute('disabled');
+          });
+
+          // Do something with the message (e.g., send it to the server)
+          console.log("Sending message:", message);
 
           scrollToBottom(chatWindow);
 
