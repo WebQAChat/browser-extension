@@ -1,4 +1,6 @@
 venv
 .vscode
-api/.env
-api/models/__pycache__
+.env
+api/__pycache__
+api/vectorStores
+models/__pycache__
