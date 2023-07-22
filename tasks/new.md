@@ -12,3 +12,7 @@
   - Llama index can integrate with vector database like pinecone, aws aurora
   - Resources:
     - [What is vector database?](https://aws.amazon.com/what-is/vector-databases/)
+   
+- [ ] Create a website
+
+- [ ] Recruit a designer
