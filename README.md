@@ -35,3 +35,5 @@ If you need a reference: https://www.digitalocean.com/community/tutorials/how-to
 -   Building a WebSocket Server With Python: https://www.piesocket.com/blog/python-websocket
 -   A Guide to Building a Full-stack web app with llama index: https://gpt-index.readthedocs.io/en/latest/guides/tutorials/fullstack_app_guide.html
 -   How to set up a virtual env in python: https://www.freecodecamp.org/news/how-to-setup-virtual-environments-in-python/
+-   Llama Index Vector Stores: https://gpt-index.readthedocs.io/en/latest/core_modules/data_modules/storage/vector_stores.html
+-   What is vector database: https://www.google.com/url?sa=t&rct=j&q=&esrc=s&source=web&cd=&cad=rja&uact=8&ved=2ahUKEwiq_eSr3KKAAxUmNEQIHXpiC90QFnoECBIQAQ&url=https%3A%2F%2Faws.amazon.com%2Fwhat-is%2Fvector-databases%2F&usg=AOvVaw0T2qmmSg1ibs7envwoCKqF&opi=89978449
