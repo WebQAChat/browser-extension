@@ -6,7 +6,7 @@
 
     -   `python -m venv venv`
 
--   Activate it (depending on your OS)\
+-   Activate it (depending on your OS)
 
     -   Windows: `source venv/Scripts/activate`
     -   MacOS/ Unix: `source venv/bin/activate`
