@@ -6,6 +6,7 @@
   - Store those information on a vector database and load vector store objects using llama index
   - Resources:
     - [Llama Index Vector Stores](https://gpt-index.readthedocs.io/en/latest/community/integrations/vector_stores.html)
+    - [Storage Context](https://gpt-index.readthedocs.io/en/latest/core_modules/data_modules/storage/customization.html)
 
 - [ ] Set up a vector database to store vector embeddings from llama index 
   - This allows us to store embeddings in a cloud environment instead of storing them locally
