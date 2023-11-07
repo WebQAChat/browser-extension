@@ -6,4 +6,8 @@ panda
 numpy
 langchain
 python-dotenv
+pymongo
 html2text
+fastapi
+xformers
+uvicorn[standard]==0.17.*

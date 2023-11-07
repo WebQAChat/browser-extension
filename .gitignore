@@ -4,3 +4,5 @@ venv
 api/__pycache__
 api/vectorStores
 models/__pycache__
+__pycache__
+node_modules
