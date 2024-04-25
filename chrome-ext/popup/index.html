@@ -1,26 +1,27 @@
 <!DOCTYPE html>
 <html>
-
 <head>
-	<meta charset="UTF-8">
-	<title>Chatbot Popup</title>
-	<link rel="stylesheet" href="/src/popup/index.css">
+  <link rel="stylesheet" type="text/css" href="index.css">
 </head>
-
 <body>
-	<div id="chatbot">
-		<div id="chat-header">Chatbot</div>
-		<div id="chat-body">
-			<div class="message user-message">User message...</div>
-			<div class="message bot-message">Bot message...</div>
-		</div>
-		<div id="chat-footer">
-			<input type="text" id="input-message" placeholder="Type your message...">
-			<button id="send-button">Send</button>
-		</div>
-	</div>
-
-	<script src="/src/popup/index.js"></script>
+  <div class="popup-container">
+    <div class="popup-header">
+      <h1>WebChat</h1>
+    </div>
+    <div class="popup-body">
+      <p>WebChat is a sidebar chatbot that can help you with your questions.</p>
+      <p>Click the button below to open the sidebar chat.</p>
+      <!-- <button id="isChatEnabled">Enable Chat On This Site</button> -->
+      <label class="switch">
+        <input type="checkbox" id="isChatEnabled">
+        <span class="slider round"></span>
+      </label>
+      <!-- <button id="open-sidebar">Open Sidebar</button> -->
+    </div>
+    <div class="popup-footer">
+      <a href="https://www.buymeacoffee.com/zhtet"><img src="https://img.buymeacoffee.com/button-api/?text=Buy me a coffee&emoji=&slug=zhtet&button_colour=FFDD00&font_colour=000000&font_family=Cookie&outline_colour=000000&coffee_colour=ffffff" /></a>
+    </div>
+  </div>
+  <script src="index.js" type="module"></script>
 </body>
-
 </html>

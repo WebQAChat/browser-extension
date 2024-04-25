@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="UTF-8">
+  <title>Chatbot</title>
+  <link rel="stylesheet" type="text/css" href="index.css">
+</head>
+<body>
+  <div class="chat-container">
+    <div class="chat-header">
+      <!-- TODO: add a setting bar -->
+      <h1>WebChat</h1>
+    </div>
+    <div class="chat-body" id="chatBody">
+      <!-- Messages will be added here dynamically -->
+      <!-- TODO: add example search prompts -->
+      <div class="chat-body-examples" id="chatBodyExamples">
+        <div class="chat-message">
+            <p>Try asking me about the weather in New York</p>
+        </div>
+        <div class="chat-message">
+            <p>What is the capital of France?</p>
+        </div>
+      </div>
+    </div>
+    <div class="chat-footer">
+      <!-- TODO: a button to attach images, capture, texts, or PDFs (need the user to sign in?)-->
+      <input type="file" id="chatFileInput" style="display: none;">
+      <button id="chatFileBtn" class="chat-button">Attach</button>
+      <!-- TODO: make the text input area grow vertically -->
+      <textarea id="chatInput" class="chat-input-message" placeholder="Type your message..." autofocus></textarea>
+      <!-- TODO: use an icon -->
+      <button id="chatMsgSendBtn" class="chat-button">Send</button>
+      <!-- <button id="chatScreenshotBtn" class="chat-button">Capture Screenshot</button> -->
+    </div>
+  </div>
+  <!-- Add your script file if you have any -->
+  <script src="index.js"></script>
+</body>
+</html>
