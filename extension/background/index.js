@@ -1,27 +1,4 @@
-// const handleExtractFromTab = async (tabId) => {
-//     chrome.tabs.get(tabId, function (tab) {
-//         var currentTabUrl = tab.url;
-//         console.log("background tab url: ", currentTabUrl);
-//         console.log("fetching api endpoint ...");
-//         fetch(`api/tabs/extract`, {
-//             method: "POST",
-//             headers: {
-//                 "Content-Type": "application/json",
-//             },
-//             body: JSON.stringify({ tabId: tab.id, urls: [tab.url] }),
-//         })
-//             .then((response) => response.json())
-//             .then((data) => console.log("background ", data, "fetched"))
-//             .catch((error) => {
-//                 console.error("Error:", error);
-//             });
-//     });
-// };
-// Initialize a cache object to store toggle states for each tab
-if (window.tabs) {
-	console.log("tabs already initialized");
-	console.log("tabs: ", window.tabs);
-}
+import { getTabState, setTabState, updateTabState } from "../utils/db.js";
 
 const handlePopupMessages = async (message, sender, sendResponse) => {
 	// Return early if this message isn't meant for the background script
@@ -95,6 +72,7 @@ const handleContentMessages = async (message, sender, sendResponse) => {
 				});
 			break;
 		case "openSidebar":
+			console.log("Opening sidebar...");
 			browser.sidebarAction.open();
 			break;
 		default:
@@ -106,6 +84,46 @@ const handleContentMessages = async (message, sender, sendResponse) => {
 browser.runtime.onMessage.addListener(handlePopupMessages);
 browser.runtime.onMessage.addListener(handleSidebarMessages);
 browser.runtime.onMessage.addListener(handleContentMessages);
+
+browser.runtime.onInstalled.addListener(async () => {
+	console.log("Extension installed");
+	// Set initial sidebar state when the extension is installed
+	await browser.storage.local.set({ sidebarOpened: false });
+});
+
+browser.runtime.onStartup.addListener(async () => {
+	// Check the sidebar state when the browser starts or when the extension is reloaded
+	let { sidebarOpened } = await browser.storage.local.get("sidebarOpened");
+	console.log("Sidebar opened: ", sidebarOpened);
+	if (sidebarOpened) {
+		browser.sidebarAction.open();
+	} else {
+		// Optionally, explicitly close the sidebar if necessary
+		browser.sidebarAction.close();
+	}
+});
+
+browser.tabs.onActivated.addListener(async (activeInfo) => {
+	console.log("Tab activated");
+	const tab = await browser.tabs.get(activeInfo.tabId);
+
+	// TODO: Check if the tab state is already initialized
+	// If not, initialize the tab state
+	// browser.sidebarAction.close();
+	const tabState = await getTabState(tab.id);
+
+	if (!tabState) {
+		setTabState(tab)
+			.then(() => {
+				console.log("Tab state initialized");
+			})
+			.catch((err) => {
+				console.error("Error initializing tab state: ", err);
+			});
+	} else {
+		console.log("Tab state already initialized");
+	}
+});
 
 // const extractFromTab = async (id, url) => {
 // 	console.log("background tab url: ", url);
