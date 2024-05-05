@@ -1,32 +1,3 @@
-// const browser = window.browser || window.chrome;
-// Initialize a cache object to store toggle states for each tab
-
-const handleBackgroundMessages = (message, sender, sendReponse) => {};
-
-const handlePopupMessages = (message, sender, sendResponse) => {
-	if (message.sender !== "popup.js") {
-		return;
-	}
-
-	switch (message.action) {
-		case "activateChat":
-			console.log("Chat is enabled: ", message);
-			if (message.value) {
-				// show chat widget
-				showChatWidget();
-			} else {
-				// hide chat widget
-				hideChatWidget();
-			}
-			break;
-		default:
-			console.warn(`Unexpected message type received: '${message}'.`);
-	}
-};
-
-// Listen for messages
-browser.runtime.onMessage.addListener(handlePopupMessages);
-
 // https://developer.mozilla.org/en-US/docs/Mozilla/Add-ons/WebExtensions/Content_scripts#webextension_apis
 // Create popover container and buttons
 const popover = document.createElement("div");
@@ -37,11 +8,13 @@ const popover_copy_btn = document.createElement("button");
 popover_copy_btn.textContent = "Copy";
 popover_copy_btn.style.border = "1px solid black";
 popover_copy_btn.style.marginRight = "5px";
+popover_copy_btn.style.display = "none";
 popover.appendChild(popover_copy_btn);
 
 const popover_ask_btn = document.createElement("button");
 popover_ask_btn.textContent = "Ask about this";
 popover_ask_btn.style.border = "1px solid black";
+popover_ask_btn.style.display = "none";
 popover.appendChild(popover_ask_btn);
 
 // Create a chat widget
@@ -49,6 +22,7 @@ const chatWidget = document.createElement("div");
 chatWidget.className = "web-chat-widget";
 chatWidget.style.cssText = `position: absolute; cursor: pointer`;
 chatWidget.textContent = "Chat Widget";
+chatWidget.style.display = "none";
 document.body.appendChild(chatWidget);
 
 // Function to ask the user to type a question about the selected text in the chat input
@@ -196,11 +170,38 @@ popover_ask_btn.addEventListener("click", (event) => {
 	closePopover();
 });
 
-chatWidget.addEventListener("click", (event) => {
-	// Open the sidebar
-	browser.runtime.sendMessage({
-		action: "openSidebar",
-		sender: "content.js",
-		target: "background.js",
-	});
-});
+// chatWidget.addEventListener("click", (event) => {
+// 	// Open the sidebar
+// 	browser.runtime.sendMessage({
+// 		action: "openSidebar",
+// 		sender: "content.js",
+// 		target: "background.js",
+// 	});
+// });
+
+// Message handlers
+const handleBackgroundMessages = (message, sender, sendReponse) => {};
+
+const handlePopupMessages = (message, sender, sendResponse) => {
+	if (message.sender !== "popup.js") {
+		return;
+	}
+
+	switch (message.action) {
+		case "activateChatWidget":
+			console.log("Chat widget is enabled: ", message);
+			if (message.value) {
+				// show chat widget
+				showChatWidget();
+			} else {
+				// hide chat widget
+				hideChatWidget();
+			}
+			break;
+		default:
+			console.warn(`Unexpected message type received: '${message}'.`);
+	}
+};
+
+// Listen for messages
+browser.runtime.onMessage.addListener(handlePopupMessages);

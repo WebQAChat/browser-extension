@@ -14,7 +14,8 @@
 		"default_panel": "sidebar/index.html",
 		"default_icon": {
 			"48": "icons/icons8-waterfox-48.png"
-		}
+		},
+		"open_at_install": false
 	},
 	"background": {
 		"scripts": ["background/index.js"],

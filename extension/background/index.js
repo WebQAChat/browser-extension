@@ -1,6 +1,7 @@
 import { getTabState, setTabState, updateTabState } from "../utils/db.js";
 
 const handlePopupMessages = async (message, sender, sendResponse) => {
+	console.log("PopupMessage received: ", message);
 	// Return early if this message isn't meant for the background script
 	if (message.sender !== "popup.js") {
 		return;
@@ -22,6 +23,15 @@ const handlePopupMessages = async (message, sender, sendResponse) => {
 			const [userInput] = message.data;
 			getBotResponse(userInput);
 			break;
+		case "toggle_sidebar":
+			console.log("Activating sidebar...");
+			console.log("Message value: ", message.value);
+			// Open the sidebar
+			if (message.value) {
+				browser.sidebarAction.open();
+			} else {
+				browser.sidebarAction.close();
+			}
 		default:
 			console.warn(
 				`Unexpected message type received: '${message.command}'.`
@@ -87,21 +97,19 @@ browser.runtime.onMessage.addListener(handleContentMessages);
 
 browser.runtime.onInstalled.addListener(async () => {
 	console.log("Extension installed");
-	// Set initial sidebar state when the extension is installed
-	await browser.storage.local.set({ sidebarOpened: false });
 });
 
-browser.runtime.onStartup.addListener(async () => {
-	// Check the sidebar state when the browser starts or when the extension is reloaded
-	let { sidebarOpened } = await browser.storage.local.get("sidebarOpened");
-	console.log("Sidebar opened: ", sidebarOpened);
-	if (sidebarOpened) {
-		browser.sidebarAction.open();
-	} else {
-		// Optionally, explicitly close the sidebar if necessary
-		browser.sidebarAction.close();
-	}
-});
+// browser.runtime.onStartup.addListener(async () => {
+// 	// Check the sidebar state when the browser starts or when the extension is reloaded
+// 	let { sidebarOpened } = await browser.storage.local.get("sidebarOpened");
+// 	console.log("Sidebar opened: ", sidebarOpened);
+// 	if (sidebarOpened) {
+// 		browser.sidebarAction.open();
+// 	} else {
+// 		// Optionally, explicitly close the sidebar if necessary
+// 		browser.sidebarAction.close();
+// 	}
+// });
 
 browser.tabs.onActivated.addListener(async (activeInfo) => {
 	console.log("Tab activated");
