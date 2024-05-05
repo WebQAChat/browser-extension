@@ -10,6 +10,7 @@ const handlePopupMessages = (message, sender, sendResponse) => {
 
 	switch (message.action) {
 		case "activateChat":
+			console.log("Chat is enabled: ", message);
 			if (message.value) {
 				// show chat widget
 				showChatWidget();
@@ -47,6 +48,7 @@ popover.appendChild(popover_ask_btn);
 const chatWidget = document.createElement("div");
 chatWidget.className = "web-chat-widget";
 chatWidget.style.cssText = `position: absolute; cursor: pointer`;
+chatWidget.textContent = "Chat Widget";
 document.body.appendChild(chatWidget);
 
 // Function to ask the user to type a question about the selected text in the chat input
@@ -107,6 +109,11 @@ function clearSelection() {
 // Show chat widget
 function showChatWidget() {
 	chatWidget.style.display = "block";
+}
+
+// Hide chat widget
+function hideChatWidget() {
+	chatWidget.style.display = "none";
 }
 
 // Hide popover and remove highlighting
@@ -190,8 +197,10 @@ popover_ask_btn.addEventListener("click", (event) => {
 });
 
 chatWidget.addEventListener("click", (event) => {
+	// Open the sidebar
 	browser.runtime.sendMessage({
 		action: "openSidebar",
+		sender: "content.js",
 		target: "background.js",
 	});
 });

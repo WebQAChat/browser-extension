@@ -17,7 +17,8 @@
 		}
 	},
 	"background": {
-		"scripts": ["background/index.js"]
+		"scripts": ["background/index.js"],
+		"type": "module"
 	},
 	"content_scripts": [
 		{

@@ -1,49 +1,79 @@
-import { setTabState } from "../utils/db.js";
+import {
+	updateTabState,
+	getTabState,
+	getValueFromTabState,
+} from "../utils/db.js";
 
-document.addEventListener("DOMContentLoaded", () => {
-	const isChatEnabled = document.getElementById("isChatEnabled");
-	if (!isChatEnabled) {
-		return;
-	}
-	isChatEnabled
-		.addEventListener("change", (event) => {
-			// Logic to enable chat
-			console.log("Chat is enabled: ", isChatEnabled.checked);
-			// TODO: add options to activate chat for this tab only or all tabs
-			// browser.runtime.sendMessage({ action: "activateChat" })
-
-			browser.tabs
-				.query({ active: true, currentWindow: true })
-				.then(async (tabs) => {
-					if (tabs.length === 0) {
-						return;
-					}
-
-					const activeTabId = tabs[0].id;
-
-					// Save the state of the toggle in the cache
-					await setTabState(
-						activeTabId,
-						"isChatEnabled",
-						isChatEnabled.checked
-					);
-					// Send a message to the content script to activate chat
-					browser.tabs.sendMessage({
-						action: "activateChat",
-						sender: "popup.js",
-						target: "content.js",
-						tabId: activeTabId,
-						value: isChatEnabled.checked, // Pass the state of the toggle (true or false)
-					});
-				});
-		})
-		.catch((error) => console.error("Error querying tabs: ", error));
+const tabs = await browser.tabs.query({
+	active: true,
+	currentWindow: true,
 });
-// document.getElementById("open-sidebar").addEventListener("click", () => {
-// 	// Logic to open the sidebar chat
-// 	browser.sidebarAction.open();
+const active_tab_id = tabs[0].id;
+const chat_enabled_checkbox = document.getElementById("isChatEnabled");
 
-// 	// close the popup
-// 	window.close();
+if (document.readyState !== "loading") {
+	console.log("Document is ready.");
+
+	const is_chat_enabled = await getValueFromTabState(
+		active_tab_id,
+		"tab_is_chat_enabled"
+	);
+
+	chat_enabled_checkbox.checked = is_chat_enabled;
+
+	chat_enabled_checkbox.onclick = async () => {
+		// Update the cache with the new toggle state
+		await updateTabState(
+			active_tab_id,
+			"tab_is_chat_enabled",
+			chat_enabled_checkbox.checked
+		);
+
+		// Send a message to the content script to activate chat
+		// browser.tabs.sendMessage(active_tab_id, {
+		// 	action: "activateChat",
+		// 	sender: "popup.js",
+		// 	target: "content.js",
+		// 	value: chat_enabled_checkbox.checked, // Pass the state of the toggle (true or false)
+		// }
+	};
+} else {
+	console.log("Document is not ready.");
+}
+
+// document.addEventListener("DOMContentLoaded", function () {
+//   const isChatEnabled = document.getElementById('isChatEnabled');
+//   isChatEnabled.addEventListener('change', function() {
+//     // chrome.storage.sync.set({ isChatEnabled: isChatEnabled.checked });
+//     console.log(isChatEnabled.checked);
+//   });
+
+//   chrome.storage.sync.get('isChatEnabled', function(data) {
+//     isChatEnabled.checked = data.isChatEnabled;
+//   });
 // });
-// Initialize a cache object to store toggle states for each tab
+// const chat_enabled_checkbox = document.getElementById("isChatEnabled");
+// console.log("chat_enabled_checkbox: ", chat_enabled_checkbox);
+// if (!chat_enabled_checkbox) {
+// 	console.error("Could not find the chat enabled checkbox.");
+// 	return;
+// }
+// console.log("chat_enabled_checkbox: ", chat_enabled_checkbox);
+// chat_enabled_checkbox.checked = is_chat_enabled;
+
+// chat_enabled_checkbox.onclick = async () => {
+// 	// Update the cache with the new toggle state
+// 	await updateTabState(
+// 		active_tab_id,
+// 		"tab_is_chat_enabled",
+// 		is_chat_enabled
+// 	);
+// Send a message to the content script to activate chat
+// browser.tabs.sendMessage(active_tab_id, {
+// 	action: "activateChat",
+// 	sender: "popup.js",
+// 	target: "content.js",
+// 	value: is_chat_enabled, // Pass the state of the toggle (true or false)
+// });
+// };
+// });
