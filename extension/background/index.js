@@ -111,13 +111,13 @@ browser.runtime.onInstalled.addListener(async () => {
 // 	}
 // });
 
-browser.tabs.onActivated.addListener(async (activeInfo) => {
-	console.log("Tab activated");
-	const tab = await browser.tabs.get(activeInfo.tabId);
+browser.tabs.onActivated.addListener(async (active_tab) => {
+	// TODO: ignore the about:debugging page
+	// tab_url:"about:debugging#/runtime/this-firefox"
+	// read about other browser.tabs events onUpdated, onCreated, onRemoved
+	console.log("Tab activated: ", active_tab);
+	const tab = await browser.tabs.get(active_tab.tabId);
 
-	// TODO: Check if the tab state is already initialized
-	// If not, initialize the tab state
-	// browser.sidebarAction.close();
 	const tabState = await getTabState(tab.id);
 
 	if (!tabState) {

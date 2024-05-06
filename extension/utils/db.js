@@ -47,9 +47,8 @@ export const setTabState = async (tab) => {
 
 	let tab_state = {
 		tab_url: tab.url,
-		tab_is_chat_enabled: false,
-		tab_is_selection_enabled: false,
-		tab_is_sidebar_open: false,
+		tab_is_text_selection_enabled: false,
+		tab_is_sidebar_opened: false,
 	};
 
 	// Initialize the tab state

@@ -1,15 +1,11 @@
-import {
-	updateTabState,
-	getTabState,
-	getValueFromTabState,
-} from "../utils/db.js";
+import { updateTabState, getTabState } from "../utils/db.js";
 
 const tabs = await browser.tabs.query({
 	active: true,
 	currentWindow: true,
 });
 const active_tab_id = tabs[0].id;
-const chat_enabled_checkbox = document.getElementById("isChatEnabled");
+const chat_sidebar_toggle = document.getElementById("sidebarToggle");
 
 function toggleChatSidebar(is_checked) {
 	if (is_checked) {
@@ -24,17 +20,11 @@ function toggleChatSidebar(is_checked) {
 if (document.readyState !== "loading") {
 	console.log("Document is ready.");
 
-	const is_chat_enabled = await getValueFromTabState(
-		active_tab_id,
-		"tab_is_chat_enabled"
-	);
+	const tab_state = await getTabState(active_tab_id);
 
-	console.log("Is chat enabled: ", is_chat_enabled);
+	chat_sidebar_toggle.checked = tab_state.tab_is_chat_enabled;
 
-	chat_enabled_checkbox.checked = is_chat_enabled;
-	// toggleChatSidebar(is_chat_enabled);
-
-	chat_enabled_checkbox.onclick = async () => {
+	chat_sidebar_toggle.onclick = async () => {
 		// sadly we can't show the sidebar when the user clicks the chat widget button from content script
 		// https://discourse.mozilla.org/t/how-to-open-sidebar-from-content-script-click-event/120986
 		// Send a message to the content script to activate chat widget
@@ -46,13 +36,13 @@ if (document.readyState !== "loading") {
 		// });
 
 		// Open or close the sidebar based on the toggle state
-		toggleChatSidebar(chat_enabled_checkbox.checked);
+		toggleChatSidebar(chat_sidebar_toggle.checked);
 
 		// Update the cache with the new toggle state
 		await updateTabState(
 			active_tab_id,
-			"tab_is_chat_enabled",
-			chat_enabled_checkbox.checked
+			"tab_is_sidebar_opened",
+			chat_sidebar_toggle.checked
 		);
 	};
 } else {
